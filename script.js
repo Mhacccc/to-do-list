@@ -41,13 +41,13 @@ search.addEventListener('input',(e)=>{
 
 function searchList(s){
     return lists.filter(e=>e.title.includes(s))
-}   
+}//  
 
 
 
 function displayLists(array = lists){
     todoList.innerHTML = "";
-    array.forEach(({id,title,when,description,isCompleted},i)=>{
+    array.forEach(({id,title,when,description,isCompleted})=>{
         
         todoList.innerHTML +=`<li ${isCompleted?`class="completed"`:""}>
         <div class="task-header">
@@ -81,7 +81,7 @@ function edit(id){
         lists[i].title = title;
         lists[i].description = description;
         lists[i].when = when;
-        displayLists();
+        displayLists(searchList(search.value));
         localStorage.setItem("lists",JSON.stringify(lists))
     }
 }
@@ -89,7 +89,7 @@ function edit(id){
 function deleteList(id){
     let i = lists.findIndex((e)=>e.id===id)
     lists.splice(i,1)
-    displayLists();
+    displayLists(searchList(search.value));
     localStorage.setItem("lists",JSON.stringify(lists))
 }
 
