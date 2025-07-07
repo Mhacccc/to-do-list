@@ -27,7 +27,17 @@
     </ul>
   </div>
 
-
   <script src="script.js"></script> <!-- Your logic here -->
+  <script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then(() => console.log("✅ Service Worker registered"))
+        .catch((err) => console.error("❌ Service Worker failed", err));
+    });
+  }
+</script>
+
 </body>
 </html>
