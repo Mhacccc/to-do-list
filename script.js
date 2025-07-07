@@ -47,7 +47,7 @@ function searchList(s){
 
 function displayLists(array = lists){
     todoList.innerHTML = "";
-    array.forEach(({title,when,description,isCompleted},i)=>{
+    array.forEach(({id,title,when,description,isCompleted},i)=>{
         
         todoList.innerHTML +=`<li ${isCompleted?`class="completed"`:""}>
         <div class="task-header">
@@ -56,22 +56,24 @@ function displayLists(array = lists){
         </div>
         <div class="task-desc">${description}</div>
         <div class="actions">
-            <button class="complete" onclick="completed(this,${i})"><span class="material-icons">check</span></button>
-            <button class="edit" onclick="edit(${i})"><span class="material-icons">edit</span></button>
-            <button class="delete" onclick="deleteList(${i})"><span class="material-icons">delete</span></button>
+            <button class="complete" onclick="completed(this,'${id}')"><span class="material-icons">check</span></button>
+            <button class="edit" onclick="edit('${id}')"><span class="material-icons">edit</span></button>
+            <button class="delete" onclick="deleteList('${id}')"><span class="material-icons">delete</span></button>
         </div>
         </li>`  
     })
 }
 
-function completed(button,i) {
+function completed(button,id) {
+  let i = lists.findIndex((e)=>e.id===id)
   const li = button.closest("li");
   li.classList.toggle("completed");
   lists[i].isCompleted = !lists[i].isCompleted;
   localStorage.setItem("lists",JSON.stringify(lists))
 }
 
-function edit(i){
+function edit(id){
+    let i = lists.findIndex((e)=>e.id===id)
     if(!lists[i].isCompleted){
         const title = prompt("Edit Title");
         const description = prompt("Edit Description");
@@ -84,7 +86,8 @@ function edit(i){
     }
 }
 
-function deleteList(i){
+function deleteList(id){
+    let i = lists.findIndex((e)=>e.id===id)
     lists.splice(i,1)
     displayLists();
     localStorage.setItem("lists",JSON.stringify(lists))
