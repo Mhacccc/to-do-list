@@ -1,11 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To-Do List App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
+  <div class="container">
+    <h1>📝 My To-Do List</h1>
     
+    <form id="todo-form">
+      <input type="text" id="todo-title" placeholder="Task title..." />
+      <input type="datetime-local" id="todo-when"  />
+      <textarea id="todo-description" placeholder="Description..."></textarea>
+      <button type="submit"><span class="material-icons">add</span> Add Task</button>
+    </form>
+    <input type="text" placeholder="Search..." class="search" id="search"><br><br>
+    <ul id="todo-list">
+      <!-- Tasks will be inserted here -->
+    </ul>
+  </div>
+
+  <script src="script.js"></script> <!-- Your logic here -->
 </body>
 </html>
